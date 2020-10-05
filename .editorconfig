@@ -1,0 +1,72 @@
+# top-most EditorConfig file
+root = true
+
+# common settings
+[*]
+charset = utf-8
+end_of_line = lf
+
+# C++ source files
+[*.{cpp,h}]
+indent_style = space
+indent_size = 4
+max_line_length = 100
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+# CMake configuration files
+[{CMakeLists.txt,CMakeSettings.json,*.cmake}]
+indent_size = 2
+indent_style = space
+trim_trailing_whitespace = true
+
+# Makefile file
+[Makefile]
+indent_style = tab
+
+# CI configuration files
+[{.travis.yml,appveyor.yml,Vagrantfile}]
+indent_size = 2
+indent_style = space
+trim_trailing_whitespace = true
+
+# Markdown/reStructuredText documentation files
+[*.{md,markdown,rst}]
+indent_size = 2
+indent_style = space
+trim_trailing_whitespace = true
+max_line_length = 80
+
+# Windows shell scripts
+[*.{cmd,bat,ps1}]
+end_of_line = crlf
+indent_size = 4
+indent_style = space
+insert_final_newline = false
+trim_trailing_whitespace = true
+
+# Unix shell scripts
+[*.sh]
+end_of_line = lf
+indent_size = 4
+indent_style = space
+insert_final_newline = false
+trim_trailing_whitespace = true
+
+# Python scripts
+[*.py]
+indent_size = 4
+indent_style = space
+
+# Yaml files
+[*.yml]
+indent_size = 2
+indent_style = space
+
+# Visual studio property sheets
+[*.{props,targets}]
+indent_size = 2
+indent_style = space
+
+[LICENSE]
+end_of_line = lf

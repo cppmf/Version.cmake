@@ -1,0 +1,36 @@
+#ifndef _@VERSION_PROJECT_ID@_VERSION_H_
+#define _@VERSION_PROJECT_ID@_VERSION_H_
+
+// @VERSION_PROJECT_NAME@ name.
+#define @VERSION_PROJECT_ID@_NAME "@VERSION_PROJECT_NAME@"
+
+// @PROJECT_NAME@ major version
+#define @VERSION_PROJECT_ID@_VERSION_MAJOR @VERSION_VERSION_MAJOR@
+
+// @PROJECT_NAME@ minor version
+#define @VERSION_PROJECT_ID@_VERSION_MINOR @VERSION_VERSION_MINOR@
+
+// @PROJECT_NAME@ patch version
+#define @VERSION_PROJECT_ID@_VERSION_PATCH @VERSION_VERSION_PATCH@
+
+#define @VERSION_PROJECT_ID@_STRINGIFY(x) #x
+#define @VERSION_PROJECT_ID@_TOSTRING(x) @VERSION_PROJECT_ID@_STRINGIFY(x)
+
+// String literal representation of the current version
+#define @VERSION_PROJECT_ID@_VERSION_STRING \
+        @VERSION_PROJECT_ID@_TOSTRING(@VERSION_PROJECT_ID@_VERSION_MAJOR) "." \
+        @VERSION_PROJECT_ID@_TOSTRING(@VERSION_PROJECT_ID@_VERSION_MINOR) "." \
+        @VERSION_PROJECT_ID@_TOSTRING(@VERSION_PROJECT_ID@_VERSION_PATCH)
+
+// Numerically encoded version, eg. v1.2.3 is 0x010203
+#define @VERSION_PROJECT_ID@_VERSION ((@VERSION_PROJECT_ID@_VERSION_MAJOR << 16) |  \
+       (@VERSION_PROJECT_ID@_VERSION_MINOR <<  8) |  \
+       (@VERSION_PROJECT_ID@_VERSION_PATCH <<  0))
+                               
+// Evaluates to True if the version is greater than @major, @minor and @patch
+#define @VERSION_PROJECT_ID@_VERSION_CHECK(major, minor, patch) \
+        (@VERSION_PROJECT_ID@_VERSION_MAJOR > (major) || \
+        (@VERSION_PROJECT_ID@_VERSION_MAJOR == (major) && @VERSION_PROJECT_ID@_VERSION_MINOR > (minor)) || \
+        (@VERSION_PROJECT_ID@_VERSION_MAJOR == (major) && @VERSION_PROJECT_ID@_VERSION_MINOR == (minor) && @VERSION_PROJECT_ID@_VERSION_PATCH >= (patch)))
+      
+#endif // _@VERSION_PROJECT_ID@_VERSION_H_

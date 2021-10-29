@@ -16,7 +16,7 @@ function(ProjectVersion)
   cmake_parse_arguments(
     "VERSION"
     ""
-    "PROJECT_NAME;VERSION_MAJOR;VERSION_MINOR;VERSION_PATCH;INPUT_FILE_PATH;OUTPUT_FILE_NAME;INSTALL_DESTINATION"
+    "PROJECT_NAME;PROJECT_DESCRIPTION;VERSION_MAJOR;VERSION_MINOR;VERSION_PATCH;VERSION_REVISION;VERSION_NAME;INPUT_FILE_PATH;OUTPUT_FILE_NAME;INSTALL_DESTINATION"
     ""
     ${ARGN}
   )
@@ -44,7 +44,7 @@ function(ProjectVersion)
   string(TOUPPER ${VERSION_PROJECT_ID} VERSION_PROJECT_ID)
 
   # generate the config file
-  configure_file(${VERSION_INPUT_FILE_PATH}  ${VERSION_OUTPUT_FILE_PATH}  @ONLY)
+  configure_file(${VERSION_INPUT_FILE_PATH} ${VERSION_OUTPUT_FILE_PATH} @ONLY)
 
   # include the generated file to project target
   # first get the target type to define the scope to use when adding include directory
@@ -57,11 +57,4 @@ function(ProjectVersion)
   # then add the directory to include
   target_include_directories(${VERSION_PROJECT_NAME} ${SCOPE} $<BUILD_INTERFACE:${VERSION_CMAKE_INCLUDE_DIR}>)
 
-   # Specify version file location at install time.
-  if(DEFINED VERSION_INSTALL_DESTINATION)
-    install(
-      DIRECTORY ${VERSION_CMAKE_INCLUDE_DIR}/
-      DESTINATION ${VERSION_INSTALL_DESTINATION}
-    )
-  endif()
 endfunction()

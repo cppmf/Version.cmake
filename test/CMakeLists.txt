@@ -63,3 +63,10 @@ ProjectVersion(
     # Use custom file name
     OUTPUT_FILE_NAME ${PROJECT_NAME}_version.h
 )
+
+
+# ---------------------------------------------------------------------------- #
+# Add test
+# ---------------------------------------------------------------------------- #
+enable_testing()
+add_test(NAME test COMMAND ${PROJECT_NAME})

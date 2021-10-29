@@ -7,7 +7,7 @@ charset = utf-8
 end_of_line = lf
 
 # C++ source files
-[*.{cpp,h}]
+[*.{cpp,h,hpp}]
 indent_style = space
 indent_size = 4
 max_line_length = 100

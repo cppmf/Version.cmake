@@ -3,7 +3,7 @@
 # As such, a decent CMake version is used to benefit from all new features.
 #
 # Check CMake Release Notes:
-#   https://cmake.org/cmake/help/latest/release/3.22.html
+#   https://cmake.org/cmake/help/latest/release/3.21.html
 # ---------------------------------------------------------------------------- #
 cmake_minimum_required(VERSION 3.21 FATAL_ERROR)
 

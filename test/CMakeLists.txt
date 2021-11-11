@@ -7,14 +7,14 @@
 # ---------------------------------------------------------------------------- #
 cmake_minimum_required(VERSION 3.21 FATAL_ERROR)
 
+# Make use of GetCPM.cmake
+include(${CMAKE_CURRENT_LIST_DIR}/cmake/GetCPM.cmake)
 
-# Add the directory containing the main CMakeLists file
-# and declare the output directory
-add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/.. ${CMAKE_CURRENT_BINARY_DIR}/VersionCmake)
-
+# Add Version.cmake package
+CPMAddPackage(NAME Version.cmake SOURCE_DIR ${CMAKE_CURRENT_LIST_DIR}/..)
 
 # define project variables
-set(PROJECT_NAME test_app)
+set(PROJECT_NAME TestApp)
 set(PROJECT_DESCRIPTION "A test app from Version.cmake")
 set(VERSION_MAJOR 11)
 set(VERSION_MINOR 2)

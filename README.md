@@ -4,7 +4,7 @@
 </p>
 
 <p align="center">
-  CMake module to easily generate version.h file
+  CMake module to easily generate version.h and version.rc file
 </p>
 
 ---
@@ -30,15 +30,15 @@ include(cmake/GetCPM.cmake)
 CPMAddPackage(
   NAME Version.cmake
   GITHUB_REPOSITORY cppmf/Version.cmake
-  VERSION 1.0.0
+  VERSION 2.0.0
 )
 
 # then call ProjectVersion function
-ProjectVersion(
-    # Name of the project
-    PROJECT_NAME ${PROJECT_NAME}
+generate_version_header(${PROJECT_NAME}
     # Description of the project
-    PROJECT_DESCRIPTION ${PROJECT_DESCRIPTION}
+    DESCRIPTION ${PROJECT_DESCRIPTION}
+    # Author
+    AUTHOR_ORGANIZATION "Cpp Modern Framework"
     # Major version
     VERSION_MAJOR ${VERSION_MAJOR}
     # Minor version
@@ -50,25 +50,16 @@ ProjectVersion(
     # Version name
     VERSION_NAME ${VERSION_NAME}
     # Use custom config file
-    INPUT_FILE_PATH ${CMAKE_CURRENT_LIST_DIR}/my_version.h.in
+    VERSION_FILE ${CMAKE_CURRENT_LIST_DIR}/test_version.h.in
     # Use custom file name
-    OUTPUT_FILE_NAME ${PROJECT_NAME}_version.h
+    VERSION_FILE_NAME ${PROJECT_NAME}_version.h
 )
+
+# Add version file to the include directories
+target_include_directories(${PROJECT_NAME} PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>)
+
+# Add rc file
+if(WIN32)
+  target_sources(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}_version.rc)
+endif()
 ```
-
-## Available parameters
-
-List of available parameters while calling ProjectVersion function
-
-parameter | description
----------|------------
-PROJECT_NAME | project name
-PROJECT_DESCRIPTION | project description
-VERSION_MAJOR | version major
-VERSION_MINOR | version minor
-VERSION_PATCH | version patch
-VERSION_REVISION | revision
-VERSION_NAME | version name
-INPUT_FILE_PATH | full path to a custom version.h.in file (default: version.h.in)
-OUTPUT_FILE_NAME | name of the generated file (default: version.h)
-

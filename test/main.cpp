@@ -8,9 +8,9 @@
 
 int main(int argc, char* argv[])
 {
-#if defined (TESTAPP_NAME) && defined (TESTAPP_VERSION) && defined (TESTAPP_VERSION_STRING)
-    std::cout << "This is " << TESTAPP_NAME << std::endl;
-    std::cout << "version: " << TESTAPP_VERSION_STRING << " (" << std::hex << TESTAPP_VERSION << ")" << std::endl;
+#if defined (APP_NAME) && defined (APP_VERSION) && defined (APP_VERSION_STRING)
+    std::cout << "This is " << APP_NAME << std::endl;
+    std::cout << "version: " << APP_VERSION_STRING << " (" << std::hex << APP_VERSION << ")" << std::endl;
     return 0;
 #else
     std::cout << "Version not found" << std::endl;
